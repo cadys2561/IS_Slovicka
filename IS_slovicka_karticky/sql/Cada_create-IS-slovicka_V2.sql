@@ -5,6 +5,7 @@ Change-Log:	Jakub Čada	30.11.2023 - created script
 						3.12.2023 -	rename
                         4.12.2023 - rename
 								  - opravení primary key
+								  - sety datetime
 
 
 
@@ -54,6 +55,8 @@ CREATE TABLE IF NOT EXISTS sety (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+alter table sety
+add vytvoreno datetime default NOW();
 
 -- -----------------------------------------------------
 -- Table `karticky_DB`.`slovicko`
