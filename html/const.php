@@ -1,5 +1,5 @@
 <?php
-define(BR,"</br>\n")
+define("BR","</br>\n");
 
 
 ?>

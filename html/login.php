@@ -10,6 +10,12 @@
     
 
 <?php
+
+require "const.php";
+//zahrň nav.php navigaci
+require "nav/nav.php";
+
+
 //define("BR","<br/>\n");
 //pokud  form. odeslan, pak zaznam ulozime do DB
 
@@ -19,7 +25,7 @@ if(isset($_POST["email"])) { //isset() vrací true pokud je hodnota nastavena
     echo "heslo ". $_POST ["heslo"].BR;
     echo "tel ". $_POST ["tel"].BR;
 
-
+}
 
     //TODO - sestavíme  SQL insert into uzivatele
 
@@ -61,36 +67,36 @@ if(isset($_POST["email"])) { //isset() vrací true pokud je hodnota nastavena
     if(isset($_SESSION["logged_in"]) 
         && $_SESSION["logged_in"])
     {
-        echo "<form method="POST"> <!-- action odesílá na zadaný php skript -->
+        echo "<form method='POST'> <!-- action odesílá na zadaný php skript -->
         <!-- id -- nutnu mít sekvenci-->
         
         
         
-        <label for="email"> *Email: </label>
-        <input id="email" type="email" name="email" required />
+        <label for='email'> *Email: </label>
+        <input id='email' type='email' name='email' required />
         <br/>
-        <label for="heslo"> *Heslo: </label>
-        <input id="heslo" type="password" name="heslo" required/>
+        <label for='heslo'> *Heslo: </label>
+        <input id='heslo' type='password' name='heslo' required/>
         <br/>
-        <input type="submit" value="Přihlaš se"/>
+        <input type='submit' value='Přihlaš se'/>
         </form>";
     }else{
         // jinak odkaz na registraci
-        echo "<form method="POST"> <!-- action odesílá na zadaný php skript -->
+        echo "<form method='POST'> <!-- action odesílá na zadaný php skript -->
         <!-- id -- nutnu mít sekvenci-->
         
         
         
-        <label for="email"> *Email: </label>
-        <input id="email" type="email" name="email" required />
+        <label for='email'> *Email: </label>
+        <input id='email' type='email' name='email' required />
         <br/>
-        <label for="heslo"> *Heslo: </label>
-        <input id="heslo" type="password" name="heslo" required/>
+        <label for='heslo'> *Heslo: </label>
+        <input id='heslo' type='password' name='heslo' required/>
         <br/>
-        <label for="tel"> Telefon: </label>
-        <input id="tel" type="number" name="tel" min="100000000" max="999999999"/>
+        <label for='tel'> Telefon: </label>
+        <input id='tel' type='number' name='tel' min='100000000' max='999999999'/>
         <br/>
-        <input type="submit" value="Zaregistruj se"/>
+        <input type='submit' value='Zaregistruj se'/>
         </form>
         ";
     }
