@@ -41,21 +41,32 @@ session_start();
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="sety.php">Sety</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item dropdown">
         <?php
 
             if(isset($_SESSION["logged_in"]) 
-                && $_SESSION["logged_in"])
-                    {
-                echo $_SESSION["email"];
-                echo "<a class='nav-link active' aria-current='page' href='profil.php'></a>";
-                    }else{
-                // jinak odkaz na registraci
-                echo "<a class='nav-link active' aria-current='page' href='login.php'>Přihlášení/Registrace</a>";
-                    }
-        ?>
+               && $_SESSION["logged_in"])
+                 {
+                  echo $_SESSION["email"];
+                  echo "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                  Profil
+                </a>
+                <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                  <li><a class='dropdown-item' href='profil.php'>Profil</a></li>
+                  <li><a class='dropdown-item' href='#'>Odhlaš se</a></li>
+                </ul>";
+            }else{
+                  // jinak odkaz na registraci
+                    echo " <a class='nav-link dropdown-toggle' href='login.php' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                    Přihlaš se/ Zaregistruj se
+                  </a>
+                  <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                    <li><a class='dropdown-item' href='login.php'>Přihlaš se</a></li>
+                    <li><a class='dropdown-item' href='reg.php'>Registruj se</a></li>
+                  </ul>";
+                  }
+          ?>
         </li>
-        
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

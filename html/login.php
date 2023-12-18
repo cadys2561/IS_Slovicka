@@ -64,13 +64,10 @@ if(isset($_POST["email"])) { //isset() vrací true pokud je hodnota nastavena
     echo "formular zatím nebyl odeslán";
 }
 */
+?>
 
 
-
-    if(isset($_SESSION["logged_in"]) 
-        && $_SESSION["logged_in"])
-    {
-        echo "<form method='POST'> <!-- action odesílá na zadaný php skript -->
+   <form method='POST'> <!-- action odesílá na zadaný php skript -->
         <!-- id -- nutnu mít sekvenci-->
         
         
@@ -82,34 +79,7 @@ if(isset($_POST["email"])) { //isset() vrací true pokud je hodnota nastavena
         <input id='heslo' type='password' name='heslo' required/>
         <br/>
         <input type='submit' value='Přihlaš se'/>
-        </form>";
-    }else{
-        // jinak odkaz na registraci
-        echo "<form method='POST'> <!-- action odesílá na zadaný php skript -->
-        <!-- id -- nutnu mít sekvenci-->
-        
-        
-        
-        <label for='email'> *Email: </label>
-        <input id='email' type='email' name='email' required />
-        <br/>
-        <label for='heslo'> *Heslo: </label>
-        <input id='heslo' type='password' name='heslo' required/>
-        <br/>
-        <label for='tel'> Telefon: </label>
-        <input id='tel' type='number' name='tel' min='100000000' max='999999999'/>
-        <br/>
-        <input type='submit' value='Zaregistruj se'/>
         </form>
-        ";
-    }
-    
-
-
-
-
-
-?>
 
 </body>
 </html>
