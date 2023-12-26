@@ -19,6 +19,7 @@
     2023-12-16 - Vytvoření stránek na které odkazuji
     2023-12-17 - Bootstrap
                - Implementace do nav.php
+    2023-12-18 - Propojení databáze
                - 
 
 */
