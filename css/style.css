@@ -1,0 +1,12 @@
+.bottom {
+    position: absolute;
+    bottom: 0; /* set the bottom to 0*/
+    left: 0;
+    right: 0;
+  }
+
+  .error {
+    background-color: #62ff87;
+    padding: 20px;
+    border-radius: 5px;
+}
