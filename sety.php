@@ -29,7 +29,56 @@ Již vytvořené sety:
 
 if(isset($_SESSION["logged_in"]) 
 && $_SESSION["logged_in"]){
-
+    
+    
+    
+    
+        if ($con) {
+            echo "provedeno" . BR;
+        }
+    
+        $id = mysqli_query($con, "SELECT id FROM uzivatele WHERE email = '" . $_SESSION["email"] . "'");
+        $row = mysqli_fetch_assoc($id);
+    
+        $sqlstat = mysqli_query($con, "SELECT id, nazev, jazyk FROM sety WHERE uzivatele_id = '" . $row["id"] . "'");
+        if ($sqlstat) {
+            echo "SQL prikaz uspesne vykonan" . BR;
+        }
+    
+        function get_nazev($setID)
+        {
+            $_SESSION["sety_id"] = $setID;
+        }
+    
+        while ($row = mysqli_fetch_assoc($sqlstat)) {
+            $setID = $row["id"];
+            echo "<a href='set.php?set_id=$setID'><button type='button' class='btn btn-outline-success' onclick='get_nazev($setID)'>"
+                . $row["nazev"] . ' - ' . $row["jazyk"] . "</button></a>" . PHP_EOL;
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*    
     if($con){
         echo"provedeno".BR;
     }
@@ -44,26 +93,36 @@ if ($sqlstat) {
     echo "SQL prikaz uspesne vykonan".BR;
 }
 
+function get_nazev(){$_SESSION["sety_id"]=$row["id"];}
 
+while ($row = mysqli_fetch_assoc($sqlstat)) {
+    $setID = $row["id"]; // Assuming 'set_id' is the column name in your database table that uniquely identifies each set.
+    echo "<a href='set.php?set_id=$setID'><button type='button' class='btn btn-outline-success' onclick='get_nazev($setID)'>"
+        . $row["nazev"] . ' - ' . $row["jazyk"] . "</button></a>" . PHP_EOL;
+}   
 
-    while($row = mysqli_fetch_assoc($sqlstat))
+/*while($row = mysqli_fetch_assoc($sqlstat))
     {
-        echo"<button type='button' class='btn btn-outline-success'>".$row["nazev"].' - '.$row["jazyk"]."</button>".BR;//vypíše název setu a jeho jazyk
+        echo"<a onclick='get_nazev()' href='set.php'><button type='button' class='btn btn-outline-success'>".$row["nazev"].' - '.$row["jazyk"]."</button></a>".BR;//vypíše název setu a jeho jazyk
     }
+*/
+
+
+}
 
 
 
-}else{
+
+else{
     echo "přihlaš se";
 }
 ?>
 
 </div>
-<a href="create.php">
+<a <?php if(isset($_SESSION["logged_in"])&& $_SESSION["logged_in"]){echo"href='create.php'";}else{;}?> >
 <div class="bottom" >
     <div class="d-grid gap-2 " >
         <button class="btn btn-primary" type="button" >
-            
             Vytvoř si nový set
         </button>
          <!-- TODO - caller když se přihlašuji odtud, tak že po přihlášeníá mě to hodí zpět sem, respektive na vytvoření setů  -->

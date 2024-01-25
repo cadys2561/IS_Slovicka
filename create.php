@@ -10,19 +10,24 @@
 </head>
 <body>
 <?php
+require "const.php";
 require "nav/nav.php";
 require_once "service/connect_db.php";
+require_once "service/session.php";
+require_once "service/utils.php";
 
 
-if (isset($_POST["email"])){
+if (isset($_POST["nazev"])){
 
-$sql = "insert into setz(nazev, jayzk, pozn, sdilene, uzivatele_id)\n"
-."values('".$_POST["nazev"]."', '".$_POST["jayzk"]
-."', '".$_POST["pozn"]."')"; //TODo - přidat yes or no sdílení a dodělat automatické provázání na uživ.
+$id=mysqli_query($con,"select id from uzivatele where email ='".$_SESSION["email"]."'");
+$row = mysqli_fetch_assoc($id);
+$sql = "insert into sety(nazev, jazyk, pozn,  uzivatele_id)\n" //sdilene,
+."values('".$_POST["nazev"]."', '".$_POST["jazyk"]."','".$_POST["pozn"]."' , '".$row["id"]."')"; //, '".$_POST["yes_no"]."' 
+//."values('".$_POST["nazev"]."', '".$_POST["jayzk"]."', '".$_POST["pozn"]."')"; //TODo - přidat yes or no sdílení a dodělat automatické provázání na uživ.
 
 
 if(mysqli_query($con, $sql)) {
-    echo "provedeno".BR;
+    show_error("Ok");
     } else {
     echo "chyba:".mysqli_error($con).BR;
     }
@@ -46,8 +51,11 @@ if(mysqli_query($con, $sql)) {
         <label for='pozn'> Pozn: </label>
         <input id='pozn' type='pozn' name='pozn'/>
         <br/>
-        <input type="radio" name="yes_no" checked>Yes</input>
-        <input type="radio" name="yes_no">No</input>
+        <label for="radio">Sdílené:</label>
+        <input id="yes_no" type="radio" name="yes_no" checked>Ano</input>
+        <input id="yes_no" type="radio" name="yes_no">Ne</input>
+        <br/>
+        <input type='submit' value='Vytvoř si set'/>
         </form>
 
 
