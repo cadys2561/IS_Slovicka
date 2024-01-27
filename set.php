@@ -100,6 +100,7 @@ if ($sqlstat) {
         </form>
 <!--  TODO - udělat zobrazování pomocí buttonu. Vložit atribut onclick a funkci, která bude swapovap echo. Udělám to tak, 
              že když klikne, tak to ověří, jaká hodnota je nastavena a echo hodí tu druhou. Potom bude moct uživatel kliknout na další 
-             a to zvětší proměnnou ID o jedna a zobrazí se další slovíčko, potažmo se může vrátit zpět -->
+             a to zvětší proměnnou ID o jedna a zobrazí se další slovíčko, potažmo se může vrátit zpět odečtením od proměnné ID. Jestli slovíčko uhodl nebo ne 
+    vyřeším tak, že se jeho ID někam zapíše a to vymslím později.-->
 </body>
 </html>
