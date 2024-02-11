@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css?version=<?php echo time(); ?>">
     <title>Document</title>
 </head>
 <body>
 
 <?php
+require_once "service/session.php";
 require "const.php";
 require "nav/nav.php";
 require_once "service/connect_db.php";
-require_once "service/session.php";
+
 require_once "service/utils.php";
 
 
 $setID = isset($_GET['set_id']) ? $_GET['set_id'] : null;
 
 if ($setID !== null) {
-    show_error("Ok");
+    show_ok("Ok");
     echo $setID.BR;
 
     $sql = "SELECT slovicko, definice FROM slovicko WHERE sety_id = $setID"; 
@@ -60,30 +61,7 @@ if (isset($_POST["slovicko"])){
 
 
 
-/*
-if(isset($_SESSION["logged_in"]) 
-&& $_SESSION["logged_in"]){
 
-    if($con){
-        echo"provedeno".BR;
-    }
-
-
-    $id=mysqli_query($con,"select id from sety where nazev ='".$setID."'");
-$row = mysqli_fetch_assoc($id);
-
-$sqlstat = mysqli_query($con,
-    "select slovicko, definice from sety
-    where sety_id = '".$row["id"]."'");
-if ($sqlstat) {
-    echo "SQL prikaz uspesne vykonan".BR;
-}
-    while($row = mysqli_fetch_assoc($sqlstat))
-    {
-        echo $row["slovicko"]. " - " .$row["definice"].BR;//vypíše název setu a jeho jazyk
-    }
-}
-*/
 
 ?>
     <form method='POST'>

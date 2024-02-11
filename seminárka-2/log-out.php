@@ -1,7 +1,23 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css?version=<?php echo time(); ?>">
+    <script src="js/script.js" ></script>
+    
+    <title>Document</title>
+</head>
+<body>
+  
 
-require "nav/nav.php";
+<?php
 require_once "service/session.php";
+require "nav/nav.php";
+require_once "service/utils.php";
+
 
 
 
@@ -26,7 +42,7 @@ if (ini_get("session.use_cookies")) {
 // Finally, destroy the session.
 session_destroy();
 
-
+show_ok("<a href='index.php'>Úspěšně odhlášen. Vrať se zpět domů</a>");
 
 /*
 setcookie(session_name(), '', 100);
@@ -35,3 +51,8 @@ session_destroy();
 $_SESSION = array();
 */
 ?>
+
+
+
+</body>
+</html>

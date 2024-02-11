@@ -6,14 +6,16 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" type="text/css" href="css/style.css?version=<?php echo time(); ?>">
 </head>
 <body>
 <?php
 require "const.php";
-require "nav/nav.php";
 require_once "service/connect_db.php";
 require_once "service/session.php";
+require "nav/nav.php";
+
+
 require_once "service/utils.php";
 
 
@@ -27,7 +29,7 @@ $sql = "insert into sety(nazev, jazyk, pozn,  uzivatele_id)\n" //sdilene,
 
 
 if(mysqli_query($con, $sql)) {
-    show_error("Ok");
+    show_ok("Ok");
     } else {
     echo "chyba:".mysqli_error($con).BR;
     }
@@ -37,26 +39,30 @@ if(mysqli_query($con, $sql)) {
 
 
 
-<form method='POST'> <!-- action odesílá na zadaný php skript -->
-        <!-- id -- nutnu mít sekvenci-->
+
         
-        
-        <input type="hidden" name="action" value="submited"/>
-        <label for='nazev'> *Název: </label>
-        <input id='nazev' type='nazev' name='nazev' required />
-        <br/>
-        <label for='jazyk'> *Jazyk: </label>
-        <input id='jazyk' type='jazyk' name='jazyk' required/>
-        <br/>
-        <label for='pozn'> Pozn: </label>
-        <input id='pozn' type='pozn' name='pozn'/>
-        <br/>
-        <label for="radio">Sdílené:</label>
-        <input id="yes_no" type="radio" name="yes_no" checked>Ano</input>
-        <input id="yes_no" type="radio" name="yes_no">Ne</input>
-        <br/>
-        <input type='submit' value='Vytvoř si set'/>
+        <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>Vytvoř si set</span></div>
+        <form method='POST'>
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <input id='nazev' type='nazev' name='nazev' placeholder="Název" required>
+          </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            <input id='jazyk' type='jazyk' name='jazyk' placeholder="Jazyk" required>
+          </div>
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <input id='pozn' type='pozn' name='pozn' placeholder="Poznámka" required>
+          </div>
+          <div class="row button">
+            <input type="submit" value="Vytvoř">
+          </div>
         </form>
+      </div>
+    </div>
 
 
 </body>

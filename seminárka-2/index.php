@@ -14,9 +14,9 @@
     
 <?php
 require "const.php";
-//zahrň nav.php navigaci
-require "nav/nav.php";
 require_once "service/session.php";
+require "nav/nav.php";
+
 ?>
 
 
