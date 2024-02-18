@@ -22,9 +22,12 @@ require_once "service/utils.php";
 
 ?>
 <script>
+    console.log("test" );
 function deleteSet(setID) {
+    console.log("test" + setID);
     if (confirm("Opravdu chcete smazat tento set?")) {
         // Potvrzení smazání pomocí AJAX
+        console.log("test");
         fetch('service/delete_set.php', {
             method: 'POST',
             headers: {
@@ -34,12 +37,14 @@ function deleteSet(setID) {
         })
         .then(response => {
             if (!response.ok) {
+                console.log("test 1");
                 throw new Error('Nepodařilo se smazat set.');
             }
             // Znovunačtení stránky po úspěšném smazání
             location.reload();
         })
         .catch(error => {
+            console.log("test 2");
             console.error('Chyba při mazání setu:', error);
         });
     }
@@ -70,9 +75,9 @@ if(isset($_SESSION["email"])
         $row = mysqli_fetch_assoc($id);
     
         $sqlstat = mysqli_query($con, "SELECT id, nazev, jazyk FROM sety WHERE uzivatele_id = '" . $row["id"] . "'");
-        if ($sqlstat) {
-            echo "SQL prikaz uspesne vykonan" . BR;
-        }
+        //if ($sqlstat) {
+        //    echo "SQL prikaz uspesne vykonan" . BR;
+        //}
     
         /*
         function get_nazev($setID)

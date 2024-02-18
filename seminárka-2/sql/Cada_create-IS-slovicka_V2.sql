@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS sety (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   CONSTRAINT `fk_sety_uzivatele`
     FOREIGN KEY (`uzivatele_id`)
-    REFERENCES `slov_kart`.`uzivatele` (`id`)
+    REFERENCES `karticky_db`.`uzivatele` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS slovicko (
   INDEX `fk_slovicko_sety1_idx` (`sety_id` ASC, `sety_uzivatele_id` ASC),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
   CONSTRAINT `fk_slovicko_sety1`
-    FOREIGN KEY (`sety_id` , `sety_uzivatele_id`)
-    REFERENCES `slov_kart`.`sety` (`id` , `uzivatele_id`)
+    FOREIGN KEY (`sety_id`)
+    REFERENCES `karticky_db`.`sety` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -33,7 +33,7 @@ $sql = "insert into uzivatele(email, heslo, jmeno, prijmeni, telefon)\n"
 
 // vykonani insertu
 if(mysqli_query($con, $sql)) {
-show_ok("Registrován. Nyní se přihlaš");
+show_ok("Registrován. Nyní se <a href='login.php'>přihlaš</a>");
 } else {
 echo "chyba:".mysqli_error($con).BR;
 }

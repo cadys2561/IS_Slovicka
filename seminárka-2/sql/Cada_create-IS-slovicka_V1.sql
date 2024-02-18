@@ -13,13 +13,13 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 
-CREATE SCHEMA IF NOT EXISTS `slov_kart` DEFAULT CHARACTER SET utf8 ;
-USE `slov_kart` ;
+CREATE SCHEMA IF NOT EXISTS `karticky_db` DEFAULT CHARACTER SET utf8 ;
+USE `karticky_db` ;
 
 -- -----------------------------------------------------
--- Table `slov_kart`.`uzivatele`
+-- Table `karticky_db`.`uzivatele`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `slov_kart`.`uzivatele` (
+CREATE TABLE IF NOT EXISTS uzivatele (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(50) NOT NULL,
   `heslo` VARCHAR(50) NOT NULL,
@@ -34,9 +34,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `slov_kart`.`sety`
+-- Table `karticky_db`.`sety`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `slov_kart`.`sety` (
+CREATE TABLE IF NOT EXISTS sety (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nazev` VARCHAR(45) NOT NULL,
   `jazyk` VARCHAR(45) NOT NULL,
@@ -48,16 +48,16 @@ CREATE TABLE IF NOT EXISTS `slov_kart`.`sety` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   CONSTRAINT `fk_sety_uzivatele`
     FOREIGN KEY (`uzivatele_id`)
-    REFERENCES `slov_kart`.`uzivatele` (`id`)
+    REFERENCES `karticky_db`.`uzivatele` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `slov_kart`.`slovicko`
+-- Table `karticky_db`.`slovicko`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `slov_kart`.`slovicko` (
+CREATE TABLE IF NOT EXISTS slovicko (
   `id` INT NOT NULL AUTO_INCREMENT,
   `slovicko` VARCHAR(45) NOT NULL,
   `definice` VARCHAR(45) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `slov_kart`.`slovicko` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
   CONSTRAINT `fk_slovicko_sety1`
     FOREIGN KEY (`sety_id` , `sety_uzivatele_id`)
-    REFERENCES `slov_kart`.`sety` (`id` , `uzivatele_id`)
+    REFERENCES `karticky_db`.`sety` (`id` , `uzivatele_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

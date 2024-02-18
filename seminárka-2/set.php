@@ -21,6 +21,22 @@ require_once "service/utils.php";
 
 $setID = isset($_GET['set_id']) ? $_GET['set_id'] : null;
 
+if (isset($_POST["slovicko"])){
+    $id = mysqli_query($con, "select id from uzivatele where email = '" . $_SESSION["email"] . "'");
+    $row = mysqli_fetch_assoc($id);
+
+    $sql = "insert into slovicko (slovicko, definice,sety_id, sety_uzivatele_id)\n"
+            ."values('".$_POST["slovicko"]."' , '".$_POST["definice"]."' , '".$setID."' , '".$row["id"]."')";
+    if(mysqli_query($con, $sql)) {
+        show_error("Ok");
+            } else {
+        echo "chyba:".mysqli_error($con).BR;
+    }
+}
+
+
+
+
 if ($setID !== null) {
     show_ok("Ok");
     echo $setID.BR;
@@ -46,36 +62,69 @@ if ($setID !== null) {
    
 } 
 
-if (isset($_POST["slovicko"])){
-    $id = mysqli_query($con, "select id from uzivatele where email = '" . $_SESSION["email"] . "'");
-    $row = mysqli_fetch_assoc($id);
-
-    $sql = "insert into slovicko (slovicko, definice,sety_id, sety_uzivatele_id)\n"
-            ."values('".$_POST["slovicko"]."' , '".$_POST["definice"]."' , '".$setID."' , '".$row["id"]."')";
-    if(mysqli_query($con, $sql)) {
-        show_error("Ok");
-            } else {
-        echo "chyba:".mysqli_error($con).BR;
-    }
-}
 
 
 
 
 
 ?>
-    <form method='POST'>
-        
-        
-        <input type="hidden" name="action" value="submited"/>
-        <label for='slovicko'> Slovicko: </label>
-        <input id='slovicko' type='slovicko' name='slovicko' required />
-        <br/>
-        <label for='definice'> Definice: </label>
-        <input id='definice' type='definice' name='definice' required/>
-        <br/>
-        <input type='submit'  value='Přidej slovíčko'/>
+
+<script>
+    function changeText() {
+        document.getElementById('figcaption1').style.display = 'none';
+        document.getElementById('figcaption2').style.display = 'block';
+    }
+
+    function resetText() {
+        document.getElementById('figcaption1').style.display = 'block';
+        document.getElementById('figcaption2').style.display = 'none';
+    }
+</script>
+
+
+<figure class="figure-with-text" onmouseover="changeText()" onmouseout="resetText()">
+    <img src="https://picsum.photos/id/287/250/300" alt="Mountains" >
+    <figcaption id="figcaption2" style="display: none;">Popisek 2</figcaption>
+</figure>
+
+
+
+
+
+
+
+<figure style="background-color: black">
+    <figcaption>něco</figcaption>
+    <figcaption>The Day</figcaption>
+</figure>
+
+<figure style="--c:#fff5">
+    <img src="https://picsum.photos/id/475/250/300" alt="Mountains">
+    <figcaption>The Night</figcaption>
+</figure>
+
+
+        <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>Přidej slovíčko</span></div>
+        <form method='POST'>
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <input id='slovicko' type='slovicko' name='slovicko' placeholder="Slovíčko:" required>
+          </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            <input id='definice' type='definice' name='definice' placeholder="Definice:" required>
+          </div>
+          <div class="row button">
+            <input type="submit" value="Přidej">
+          </div>
         </form>
+      </div>
+    </div>
+       
+        
+
 
 
         <?php
