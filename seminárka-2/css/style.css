@@ -154,43 +154,182 @@ form .signup-link a:hover{
 
 
 
+.flip-card.container{
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: flex-start;
+}
 
-figure {
-  display: grid;
-  border-radius: 1rem;
-  overflow: hidden;
-  cursor: pointer;
+
+.flip-card {
+  display: inline-block; /* Umístění karet vedle sebe */
+  position: relative;
+  align-self: center;
+  background-color: transparent;
+  width: 150px;
+  height: 200px;
+  
+  perspective: 1000px; 
 }
-figure > * {
-  grid-area: 1/1;
-  transition: .4s;
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
-figure figcaption {
-  display: grid;
-  align-items: end;
-  font-family: sans-serif;
-  font-size: 2.3rem;
-  font-weight: bold;
-  color: #0000;
-  padding: .75rem;
-  background: var(--c,#0009);
-  clip-path: inset(0 var(--_i,100%) 0 0);
-  -webkit-mask:
-    linear-gradient(#000 0 0),
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  -webkit-mask-clip: text, padding-box;
-  margin: -1px;
+
+.flip-card.hover .flip-card-inner {
+  transform: rotateY(180deg);
 }
-figure:hover figcaption{
-  --_i: 0%;
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
 }
-figure:hover img {
-  transform: scale(1.2);
+
+.flip-card-front {
+  background: rgb(20, 151, 60);
+  color: black;
+  border-radius: 15px;
+  word-wrap: break-word;
 }
-@supports not (-webkit-mask-clip: text) {
-  figure figcaption {
-   -webkit-mask: none;
-   color: #fff;
+
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 15px;
+  transform: rotateY(180deg);
+}
+
+.flip-card h1 {
+  font-size: 24px;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+
+
+
+
+
+.card-item {
+  background-color: rgb(116, 204, 255);
+  border-radius: 15px;
+  height: 223px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px; /* Mezera mezi kartami */
+  display: inline-block; /* Umístění karet vedle sebe */
+  position: relative;
+  align-items: left;
+}
+
+.main{
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  background-color: #0a157e;
+  color: white;
+  left: 10px;
+  border: 5px;
+  border-radius: 15px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  box-shadow: 10px -15px  #12876f;
+}
+
+
+
+.bg-box{
+  background-color: rgb(116, 204, 255);
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-bottom: 100px;
+  margin-top: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  padding-top: 25px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 15px 20px #0a157e;
+}
+
+.xd1{
+  /*background-color: rgb(198, 255, 215);*/
+  background-image: url('../fotos/bg-picture.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+.login{
+  background-image: url('../fotos/login.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.set{
+  background-image: url('../fotos/card-bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+
+
+.main-sm{
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #0a157e;
+  color: white;
+  left: 10px;
+  border: 5px;
+  border-radius: 15px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-right: 100px;
+  box-shadow: 2px -3px  #12876f;
+  text-align: center;
+  
+}
+
+
+
+.bg-box-sm{
+  background-color: rgb(116, 204, 255);
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 1300px;
+ 
+  padding-left: 5px;
+  padding-right: 0;
+  padding-bottom: 5px;
+  padding-top: 25px;
+  border-radius: 15px;
+  box-shadow: 5px 10px #0a157e;
+}
+
+@media only screen and (max-width: 1575px) {
+  .bg-box {
+    margin-left: 50px;
+  margin-right: 50px;
+  }
+  .bg-box-sm{
+    margin-right: 100px; 
+  }
+  .main-sm{
+    margin-right: 150px;
   }
 }
+

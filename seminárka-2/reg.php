@@ -6,36 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
     <link rel="stylesheet" type="text/css" href="css/style.css?version=<?php echo time(); ?>">
-    <title>Document</title>
+    <title>Registrace</title>
 </head>
-<body>
+<body class="login">
     
 
 <?php
 require "const.php";
 require_once "service/session.php";
-require "nav/nav.php";
+
 require_once "service/connect_db.php";
 require_once "service/utils.php";
 
 
 
-if (isset($_POST["email"])) { // isset() vraci true
+if (isset($_POST["email"])&&$_POST["heslo1"]==$_POST["heslo2"]) { 
 
 
 // TODO - sestavime SQL INSERT into uzivatele...
 $sql = "insert into uzivatele(email, heslo, jmeno, prijmeni, telefon)\n"
-."values('".$_POST["email"]."', '".$_POST["heslo"]."', '".$_POST["jmeno"]."', '".$_POST["prijmeni"]
+."values('".$_POST["email"]."', '".$_POST["heslo1"]."', '".$_POST["jmeno"]."', '".$_POST["prijmeni"]
 ."', '".$_POST["telefon"]."')";
 
 
 
 // vykonani insertu
 if(mysqli_query($con, $sql)) {
-show_ok("Registrován. Nyní se <a href='login.php'>přihlaš</a>");
+  $_SESSION["logged_in"] = true;
+  $_SESSION["email"] = $_POST["email"];
+  show_ok_back("Nyní jste úspěšně registrován");
 } else {
-echo "chyba:".mysqli_error($con).BR;
+  show_error("chyba:".mysqli_error($con)) ;
 }
 
 
@@ -45,8 +53,10 @@ echo "chyba:".mysqli_error($con).BR;
 
 exit(); // ukonceni .php 
 
+}else if($_SERVER["REQUEST_METHOD"] == "POST"){
+  show_error("Hesla se neshodují");
 }
-
+require "nav/nav.php";
 ?>
 
 
@@ -91,7 +101,11 @@ exit(); // ukonceni .php
           </div>
           <div class="row">
             <i class="fas fa-lock"></i>
-            <input id='heslo' type='password' name='heslo' placeholder="Heslo" required>
+            <input id='heslo1' type='password' name='heslo1' placeholder="Heslo" required>
+          </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            <input id='heslo2' type='password' name='heslo2' placeholder="Zopakuj heslo" required>
           </div>
      
           <div class="row button">

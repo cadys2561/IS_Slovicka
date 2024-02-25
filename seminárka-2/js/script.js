@@ -1,4 +1,9 @@
-function show_error(message) {
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+
+
+function showPopup(message) {
     // Vytvoření nového divu pro vyskakovací okno
     var popupContainer = document.createElement('div');
     popupContainer.classList.add('popup-container');
@@ -27,3 +32,6 @@ function show_error(message) {
     // Přidání vyskakovacího okna do těla stránky
     document.body.appendChild(popupContainer);
   }
+
+
+  

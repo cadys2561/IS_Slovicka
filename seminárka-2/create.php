@@ -7,8 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css?version=<?php echo time(); ?>">
-</head>
-<body>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </head>
+  <body class="xd1">
 <?php
 require "const.php";
 require_once "service/connect_db.php";
@@ -29,7 +35,7 @@ $sql = "insert into sety(nazev, jazyk, pozn,  uzivatele_id)\n" //sdilene,
 
 
 if(mysqli_query($con, $sql)) {
-    show_ok("Ok");
+    show_ok("Set byl vytvořen!");
     } else {
     echo "chyba:".mysqli_error($con).BR;
     }
@@ -55,7 +61,7 @@ if(mysqli_query($con, $sql)) {
           </div>
           <div class="row">
             <i class="fas fa-user"></i>
-            <input id='pozn' type='pozn' name='pozn' placeholder="Poznámka" required>
+            <input id='pozn' type='pozn' name='pozn' placeholder="Poznámka">
           </div>
           <div class="row button">
             <input type="submit" value="Vytvoř">
